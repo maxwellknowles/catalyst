@@ -1,0 +1,26 @@
+resource,link,type
+Open Library,http://openlibrary.org/,books
+Archive,https://archive.org/,books
+LibriVox,https://librivox.org/,books
+The Online Books Page,https://onlinebooks.library.upenn.edu/,books
+Google Books,https://books.google.com/,books
+Gutenberg,https://www.gutenberg.org/,books
+Khan Academy,https://www.khanacademy.org/,online courses
+EdX,https://www.edx.org/,online courses
+Coursera,https://www.coursera.org/,online courses
+Alison,https://alison.com/,online courses
+CourseBuffet,https://www.coursebuffet.com/,online courses
+CodeAcademy,https://www.codecademy.com/,online courses
+FreeCodeCamp,https://www.freecodecamp.org/,online courses
+Memrise,https://www.memrise.com/,personal development
+ZenHabits,https://zenhabits.net/,personal development
+Anki,https://apps.ankiweb.net/,personal development
+Mind Tools,https://www.mindtools.com/,personal development
+Babbel,https://www.babbel.com/,languages
+Drops,https://languagedrops.com/,languages
+Busuu,https://www.googleadservices.com/,languages
+Duolingo,https://www.duolingo.com/,languages
+Now I Know,https://nowiknow.com/,continued learning
+Curious,https://curious.com/,continued learning
+BigThink,https://bigthink.com/,continued learning
+todayilearned,https://todayilearned.app/,continued learning
