@@ -1,0 +1,26 @@
+resource,link,type,description
+Open Library,http://openlibrary.org/,books,"Open Library is an open, editable library catalog, building towards a web page for every book ever published"
+Archive,https://archive.org/,books,"Internet Archive is a non-profit library of millions of free books, movies, software, music, websites, and more."
+LibriVox,https://librivox.org/,books,"LibriVox audiobooks are free for anyone to listen to, on their computers, iPods or other mobile device, or to burn onto a CD."
+The Online Books Page,https://onlinebooks.library.upenn.edu/,books,Listing over 3 million free books on the Web
+Google Books,https://books.google.com/,books,Search the world's most comprehensive index of full-text books.
+Project Gutenberg,https://www.gutenberg.org/,books,"Project Gutenberg is a library of over 60,000 free eBooks"
+Khan Academy,https://www.khanacademy.org/,online courses,"Learn for free about math, art, computer programming, economics, physics, chemistry, biology, medicine, finance, history, and more."
+EdX,https://www.edx.org/,online courses,"edX is an American massive open online course provider created by Harvard and MIT. It hosts online university-level courses in a wide range of disciplines to a worldwide student body, including some courses at no charge."
+Coursera,https://www.coursera.org/,online courses,Coursera Inc. is a U.S.-based massive open online course provider founded in 2012 by Stanford University computer science professors Andrew Ng and Daphne Koller.
+Alison,https://alison.com/,online courses,Free online courses with certificates.
+CourseBuffet,https://www.coursebuffet.com/,online courses,"We find and organize free college courses from over 17 platforms and 200+ universities, enabling you to search for them in one spot."
+CodeAcademy,https://www.codecademy.com/,online courses,"Codecademy is an American online interactive platform that offers free coding classes in 12 different programming languages including Python, Java, Go, JavaScript, Ruby, SQL, C++, C#, and Swift, as well as markup languages HTML and CSS."
+FreeCodeCamp,https://www.freecodecamp.org/,online courses,"freeCodeCamp is a non-profit organization that consists of an interactive learning web platform, an online community forum, chat rooms, online publications and local organizations that intend to make learning web development accessible to anyone."
+Memrise,https://www.memrise.com/,personal development,"Memrise is a British language platform that uses spaced repetition of flashcards to increase the rate of learning. It is based in London, UK. Memrise offers user-generated content on a wide range of other subjects."
+ZenHabits,https://zenhabits.net/,personal development,Zen Habits is a blog written by Leo Babauta about implementing zen habits in daily life. It offers suggestions for how to live and also includes frequent references to how Leo Babauta has implemented these habits.
+Mind Tools,https://www.mindtools.com/,personal development,"Mind Tools offers more than 2,500 resources to help you develop your personal wellbeing and career skills."
+Babbel,https://www.babbel.com/,languages,Babbel is the new way to learn a foreign language. The comprehensive learning system combines effective education methods with state-of-the-art technology.
+Drops,https://languagedrops.com/,languages,"Word by word, Drops helps you learn new vocabulary through fun, fast-paced games with simple mnemonic images in just 5 minutes a day."
+Busuu,https://www.googleadservices.com/,languages,"Busuu is a language learning platform on web, iOS and Android that allows users to interact with native speakers."
+Duolingo,https://www.duolingo.com/,languages,"Duolingo is an American educational technology company which produces learning apps and provides language certification. On its main gamified language learning app, users can practice vocabulary, grammar, pronunciation and listening skills using spaced repetition."
+Anki,https://apps.ankiweb.net/,continued learning,"Anki is a free and open-source flashcard program using spaced repetition, a technique from cognitive science for memorization. The name comes from the Japanese word for ""memorization""."
+Now I Know,https://nowiknow.com/,continued learning,Now I Know is a free daily newsletter; you'll learn something new every day.
+Curious,https://curious.com/,continued learning,"Join Curious.com and get a daily learning workout with daily curios, challenging puzzles, and 25000+ video lessons recommended just for you."
+BigThink,https://bigthink.com/,continued learning,Actionable lessons from the world's greatest thinkers and doers.
+todayilearned,https://todayilearned.app/,continued learning,"Did you ever wish you could grow faster, without as much pain and failure? Now you can!"
