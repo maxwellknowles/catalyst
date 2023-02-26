@@ -1,0 +1,6 @@
+openai
+streamlit
+base64
+pandas
+st_aggrid
+streamlit_option_menu
