@@ -261,7 +261,7 @@ if choose=="Bulk: Summarize or Answer":
     col1, col2 = st.columns(2)
     with col1:
         st.subheader("Summarize or Answer a Set of Prompts")
-        st.write("Catalyst leverages the latest developments in AI to comb through a list of prompts — Algebra questions, book titles, topics, etc — and provide summaries or answers for each one. This is meant as a tool for rapidly downloading information on a set of topics.\nIf you need help getting started, consider asking Catalyst's AI advisor to for a list of resources on a topic.")
+        st.write("Catalyst leverages the latest developments in AI to comb through a list of prompts — Algebra questions, book titles, topics, etc — and provide summaries or answers for each one. This is meant as a tool for rapidly downloading information on a set of topics.\nIf you need help getting started, consider asking Catalyst's AI advisor for a list of resources on a topic.")
 
     with col2:
         html = """
