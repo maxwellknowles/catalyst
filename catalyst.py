@@ -39,13 +39,13 @@ def convert_df(df):
 #OpenAI prompt completion API
 prompts = []
 responses = []
-def catalyst_ai_question(human_response):
+def catalyst_ai_question(human_response,max_tokens):
     conversation = openai.Completion.create(
         model="text-davinci-003",
         #prompt="The following is a conversation with an AI assistant Catalyst who is helpful, creative, clever, and very friendly. Catalyst AI provides advice on learning and education with simple, clear language. Please think in steps and list resources when appropriate. Catalyst should finish its answer in a separate paragraph with 3 good questions to could ask Catalyst next.\n\nHuman:"+human_response,
         prompt="The following is a conversation with an AI assistant Catalyst who is helpful, creative, clever, and very friendly. Catalyst AI provides advice on learning and education with simple, clear language. Please think in steps and list resources when appropriate. Here's the question: "+human_response,
         temperature=0.5,
-        max_tokens=300,
+        max_tokens=max_tokens,
         top_p=1,
         frequency_penalty=0.0,
         presence_penalty=0.6,
@@ -55,13 +55,13 @@ def catalyst_ai_question(human_response):
     #responses.append(response)
     return response
 
-def catalyst_ai_summarize(human_response):
+def catalyst_ai_summarize(human_response,max_tokens):
     conversation = openai.Completion.create(
         model="text-davinci-003",
         #prompt="The following is a conversation with an AI assistant Catalyst who is helpful, creative, clever, and very friendly. Catalyst AI provides advice on learning and education with simple, clear language. Please think in steps and list resources when appropriate. Catalyst should finish its answer in a separate paragraph with 3 good questions to could ask Catalyst next.\n\nHuman:"+human_response,
         prompt="The following is a conversation with an AI assistant Catalyst who is helpful, creative, clever, and very friendly. Catalyst AI provides advice on learning and education with simple, clear language. Please summarize the following topic or resource: "+human_response,
         temperature=0.5,
-        max_tokens=300,
+        max_tokens=max_tokens,
         top_p=1,
         frequency_penalty=0.0,
         presence_penalty=0.6,
@@ -233,9 +233,9 @@ if choose=="Ask AI":
     response = ""
     l=[]
     if st.button("Submit"):
+        response = catalyst_ai_question(human_prompt,300)
         with st.spinner('AI is pondering...'):
-            time.sleep(2)
-        response = catalyst_ai_question(human_prompt)
+            time.sleep(3)
         tup=(human_prompt,response)
         l.append(tup)
         st.write(response)
@@ -249,7 +249,7 @@ if choose=="Ask AI":
         
         conversation_csv = convert_df(conversation)
 
-        st.write("**Download your questions and responses from Catalyst AI...**")
+        st.write("**Download your question and response from Catalyst AI...**")
         st.download_button(
             label="Download",
             data=conversation_csv,
@@ -287,14 +287,17 @@ if choose=="Bulk: Summarize or Answer":
     if uploaded_file is not None:
         problems = pd.read_csv(uploaded_file)
 
+    st.write("**Step 3**")
+    max_tokens = st.select_slider("Select max length of each response (in words)",options=range(200,1001))
+
     if uploaded_file is not None:
         if st.button("Answer Questions"):
             with st.spinner('Catalyst AI is working through your problems...'):
                 time.sleep(2)
                 l=[]
                 for i in range(len(problems)):
-                    problems["answer"][i] = catalyst_ai_question(problems['prompt'][i])
-                    st.write("Answered question "+str(i))
+                    problems["answer"][i] = catalyst_ai_question(problems['prompt'][i],max_tokens)
+                    st.write("Answered question "+str(i+1))
             st.table(problems)
         
         if st.button("Summarize Topics or Resources"):
@@ -302,8 +305,8 @@ if choose=="Bulk: Summarize or Answer":
                 time.sleep(2)
                 l=[]
                 for i in range(len(problems)):
-                    problems["answer"][i] = catalyst_ai_summarize(problems['prompt'][i])
-                    st.write("Answered question "+str(i))
+                    problems["answer"][i] = catalyst_ai_summarize(problems['prompt'][i],max_tokens)
+                    st.write("Answered question "+str(i+1))
             st.table(problems)
 
         problems_and_answers_csv = convert_df(problems)
