@@ -3,7 +3,6 @@ import streamlit as st
 #from gtts import gTTS
 import base64
 import pandas as pd
-from st_aggrid import AgGrid
 import time
 from streamlit_option_menu import option_menu
 import streamlit.components.v1 as components
