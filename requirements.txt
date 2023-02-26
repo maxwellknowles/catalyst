@@ -1,5 +1,4 @@
 openai
 streamlit
 pandas
-st_aggrid
 streamlit_option_menu
