@@ -293,7 +293,7 @@ if choose=="Bulk: Summarize or Answer":
                 time.sleep(2)
                 l=[]
                 for i in range(len(problems)):
-                    problems["answer"][i] = catalyst_ai_question(problems['question'][i])
+                    problems["answer"][i] = catalyst_ai_question(problems['prompt'][i])
                     st.write("Answered question "+str(i))
             st.table(problems)
         
@@ -302,7 +302,7 @@ if choose=="Bulk: Summarize or Answer":
                 time.sleep(2)
                 l=[]
                 for i in range(len(problems)):
-                    problems["answer"][i] = catalyst_ai_summarize(problems['question'][i])
+                    problems["answer"][i] = catalyst_ai_summarize(problems['prompt'][i])
                     st.write("Answered question "+str(i))
             st.table(problems)
 
