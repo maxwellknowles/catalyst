@@ -109,10 +109,9 @@ button_html = '''
 
 #START PAGE
 #page setup
-st.set_page_config(page_title="Catalyst: For Learning", page_icon=":book:", layout="centered")
+st.set_page_config(page_title="Catalyst: Lifelong Learning Everywhere", page_icon=":book:", layout="centered")
 
 #st.image("https://github.com/maxwellknowles/catalyst/blob/main/DALL%C2%B7E%202022-12-29%2014.05%201.png?raw=true",width=200)
-st.title("Catalyst")
 
 #menu
 with st.sidebar:
@@ -120,7 +119,7 @@ with st.sidebar:
                             icons=['play-circle-fill','journals', 'chat-text-fill', 'table', 'envelope'],
                             menu_icon="app-indicator", default_index=0, orientation="vertical",
                             styles={
-        "container": {"padding": "5!important", "background-color": "grey"},
+        "container": {"padding": "5!important", "background-color": "white"},
         "icon": {"color": "white", "font-size": "25px"}, 
         "nav-link": {"font-size": "16px", "text-align": "left", "margin":"0px", "--hover-color": "#BBBBBD"},
         "nav-link-selected": {"background-color": "#C96985"},
@@ -129,22 +128,23 @@ with st.sidebar:
 
 #home
 if choose=="Home":
-    st.write("**Democratizing and expediting lifelong learning**")
+    st.title("Catalyst")
+    st.subheader("**Democratizing and expediting lifelong learning**")
     html = """
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
         <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_n8y71jlq.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop autoplay></lottie-player>
     """
     components.html(html,height=250)
 
-    st.subheader("Our reasoning...")
+    st.subheader("Knowledge doesn't belond to an age or zip code.")
     st.write("• Today, a person's outcomes are largely determined by where they are born and, by extension, the public education they receive.")
-    st.write("• Learning for professional and personal growth both during and beyond our academic years is crucial yet often unguided.")
+    st.write("• Learning for professional or personal growth both during and beyond our academic years is crucial but often unguided.")
     st.write("• People don't choose where they are born or how the world will evolve, but everyone has a right to learn and flourish.")
 
     col1, col2 = st.columns(2)
     with col1:
         st.subheader("**That's where Catalyst comes in.**")
-        st.write("**Catalyst is a simple project that...**")
+        st.write("Catalyst...")
         st.write("• surfaces **free resources** by type or purpose")
         st.write("• provides powerful **answers** to sets of prompts **en masse** for rapid information download")
         st.write("• features an **AI advisor** that not only answers but recommends **focused, goal-oriented questions** — an AI-infused application of the 2400 year old Socratic method")
@@ -154,21 +154,21 @@ if choose=="Home":
        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
         <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_bvleoupy.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
         """
-        components.html(html,height=250)
+        components.html(html,height=500)
 
 #free resources
 if choose=="Resources Repo":
+    st.title("Repository Repo")
     html = """
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <lottie-player src="https://assets2.lottiefiles.com/private_files/lf30_t8f3t4.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
     """
-    components.html(html,height=250)
+    components.html(html,height=300)
     tab1, tab2 = st.tabs(["Free Learning", "Free Planning"])
     with tab1:
         #free learning resources
-        st.header("Free Learning Resources")
+        st.subheader("Free Learning Resources")
         st.write("**Resources for high school, college, career, and personal growth! You can find more resources and even specific course recommendations by chatting with Catalyst AI.**")
-        
         categories = free_resources.drop_duplicates("type")
         category = st.selectbox("Select a category!", categories['type'])
         free_resources = free_resources[(free_resources["type"]==category)]
@@ -190,7 +190,7 @@ if choose=="Resources Repo":
 
     with tab2:
         #free planning resources for personal development or course/semester planning
-        st.header("Free Planning Resources")
+        st.subheader("Free Planning Resources")
         st.write("**A few resources to help you manage courses, semesters, skill building, reading goals, and more...**")
         notion = "https://www.notion.so/templates/categories/education"
         kiddom = "https://www.kiddom.co/"
@@ -205,14 +205,14 @@ if choose=="Resources Repo":
 #myobj.save("audio.mp3")
 #autoplay_audio("audio.mp3")
 if choose=="Ask AI":
-    st.header("Catalyst AI: An On-Demand Advisor & Tutor")
+    st.title("Catalyst AI: An On-Demand Advisor & Tutor")
     html = """
        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-        <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_wcjgoacf.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
+        <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_wcjgoacf.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;" autoplay></lottie-player>
         """
     components.html(html,height=250)
     st.write("Each question may only have one answer, but one answer can inspire many questions. Catalyst focuses on asking good questions to focus your path towards better understanding.")
-    st.subheader("Submit a Prompt")
+    st.subheader("Submit a prompt")
     st.write("Feel free to select an example prompt below or write your own :pencil:")
     if 'human_prompt_example' not in st.session_state:
         st.session_state.human_prompt_example = ""
@@ -257,10 +257,11 @@ if choose=="Ask AI":
             mime='text/csv',
             )
         
-if choose=="Bulk: Summarize or Answer":    
+if choose=="Bulk: Summarize or Answer":  
+    st.title("Bulk: Summarize or Answer")  
     col1, col2 = st.columns(2)
     with col1:
-        st.subheader("Summarize or Answer a Set of Prompts")
+        st.subheader("Summarize or answer a set of prompts")
         st.write("Catalyst leverages the latest developments in AI to comb through a list of prompts — Algebra questions, book titles, topics, etc — and provide summaries or answers for each one. This is meant as a tool for rapidly downloading information on a set of topics.\nIf you need help getting started, consider asking Catalyst's AI advisor for a list of resources on a topic.")
 
     with col2:
@@ -270,7 +271,7 @@ if choose=="Bulk: Summarize or Answer":
         """
         components.html(html,height=250)
 
-    st.subheader("Upload Prompts")
+    st.subheader("Upload prompts")
 
     st.write("**Step 1**")
     example = pd.read_csv("https://raw.githubusercontent.com/maxwellknowles/catalyst/main/catalyst_example.csv")
@@ -320,6 +321,7 @@ if choose=="Bulk: Summarize or Answer":
         
 
 if choose=="Feedback":
+    st.title("Submit Feedback")
     st.subheader("We appreciate your feedback!")
     st.write("Share recommended resources, feature requests, or bug reports...")
     jotform = """<script type="text/javascript" src="https://form.jotform.com/jsform/230567840430049"></script>"""
