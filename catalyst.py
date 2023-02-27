@@ -115,12 +115,12 @@ st.set_page_config(page_title="Catalyst: Lifelong Learning Everywhere", page_ico
 
 #menu
 with st.sidebar:
-    choose = option_menu("Catalyst", ["Home","Resources Repo", "Ask AI", "Bulk: Summarize or Answer", "Feedback"],
-                            icons=['play-circle-fill','journals', 'chat-text-fill', 'table', 'envelope'],
+    choose = option_menu("Catalyst", ["Home","Resources Repo", "Ask AI", "Bulk: Summarize or Answer", "Feedback", "Share"],
+                            icons=['play-circle-fill','journals', 'chat-text-fill', 'table', 'envelope', "share-fill"],
                             menu_icon="app-indicator", default_index=0, orientation="vertical",
                             styles={
         "container": {"padding": "5!important", "background-color": "white"},
-        "icon": {"color": "white", "font-size": "25px"}, 
+        "icon": {"black": "white", "font-size": "25px"}, 
         "nav-link": {"font-size": "16px", "text-align": "left", "margin":"0px", "--hover-color": "#BBBBBD"},
         "nav-link-selected": {"background-color": "#C96985"},
     }
@@ -326,3 +326,29 @@ if choose=="Feedback":
     st.write("Share recommended resources, feature requests, or bug reports...")
     jotform = """<script type="text/javascript" src="https://form.jotform.com/jsform/230567840430049"></script>"""
     components.html(jotform, height=1500)
+
+if choose=="Share":
+    st.title("Share Catalyst")
+    #email
+    subject = "Check out Catalyst, a platform for learning"
+    body = "Take a look at Catalyst, an AI-powered project that's democratizing and expediting lifelong learning: https://catalyst-ai.streamlit.app/"
+    st.markdown(f'<a href="mailto:?subject={subject}&body={body}">Share via Email</a>', unsafe_allow_html=True)
+
+    #text
+    text_message = "Take a look at Catalyst, an AI-powered project democratizing and expediting lifelong learning: https://catalyst-ai.streamlit.app/"
+    st.markdown(f'<a href="sms:?body={text_message}">Share via Text</a>', unsafe_allow_html=True)
+
+    #twitter
+    html_twitter = """
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" 
+        data-text="Check out Catalyst, an AI-powered project that's democratizing and expediting lifelong learning..."
+        data-url="https://catalyst-ai.streamlit.app/"
+        data-show-count="false">
+        data-size="Large" 
+        data-hashtags="streamlit,python"
+        Tweet
+        </a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    """
+
+    components.html(html_twitter)
