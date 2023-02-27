@@ -115,7 +115,7 @@ st.set_page_config(page_title="Catalyst: Lifelong Learning Everywhere", page_ico
 
 #menu
 with st.sidebar:
-    choose = option_menu("Catalyst", ["Home","Resources Repo", "Ask AI", "Bulk: Summarize or Answer", "Feedback", "Share"],
+    choose = option_menu("Catalyst", ["Home","Resources Repo", "Ask AI", "Rapid Learning", "Feedback", "Share"],
                             icons=['play-circle-fill','journals', 'chat-text-fill', 'table', 'envelope', "share-fill"],
                             menu_icon="app-indicator", default_index=0, orientation="vertical",
                             styles={
@@ -129,7 +129,7 @@ with st.sidebar:
 #home
 if choose=="Home":
     st.title("Catalyst")
-    st.subheader("**Democratizing and expediting lifelong learning**")
+    st.subheader("**Rapid, open learning for everyone, everywhere.**")
     html = """
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
         <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_n8y71jlq.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop autoplay></lottie-player>
@@ -141,13 +141,13 @@ if choose=="Home":
     st.write("• Learning for professional or personal growth both during and beyond our academic years is crucial but often unguided.")
     st.write("• People don't choose where they are born or how the world will evolve, but everyone has a right to learn and flourish.")
 
+    st.subheader("**That's where Catalyst comes in.**")
     col1, col2 = st.columns(2)
     with col1:
-        st.subheader("**That's where Catalyst comes in.**")
-        st.write("Catalyst...")
-        st.write("• surfaces **free resources** by type or purpose")
-        st.write("• provides powerful **answers** to sets of prompts **en masse** for rapid information download")
-        st.write("• features an **AI advisor** that not only answers but recommends **focused, goal-oriented questions** — an AI-infused application of the 2400 year old Socratic method")
+        st.write("**Catalyst provides...**")
+        st.write("• dozens of **free resources**, including online courses, book repositories, language learning, and code programs")
+        st.write("• powerful **answers** to sets of prompts **en masse** for rapid information download")
+        st.write("• an **AI advisor** that not only answers but recommends **focused, goal-oriented questions** — an AI-infused application of the 2400 year old Socratic method")
         st.write("**Happy learning!**")
     with col2:
         html = """
@@ -257,12 +257,12 @@ if choose=="Ask AI":
             mime='text/csv',
             )
         
-if choose=="Bulk: Summarize or Answer":  
-    st.title("Bulk: Summarize or Answer")  
-    col1, col2 = st.columns(2)
+if choose=="Rapid Learning":  
+    st.title("Rapid Learning")  
+    col1, col2 = st.columns([1.5,1])
     with col1:
-        st.subheader("Summarize or answer a set of prompts")
-        st.write("Catalyst leverages the latest developments in AI to comb through a list of prompts — Algebra questions, book titles, topics, etc — and provide summaries or answers for each one. This is meant as a tool for rapidly downloading information on a set of topics.\nIf you need help getting started, consider asking Catalyst's AI advisor for a list of resources on a topic.")
+        st.subheader("Summarize or answer prompts in bulk")
+        st.write("Catalyst leverages the latest developments in AI to comb through a list of prompts — math problems, book titles, a set of spiritual disciplines, etc — and provide summaries or answers for each one. This is a tool for rapidly downloading information to help you in your research and learning.\nIf you need help getting started, consider asking Catalyst's AI advisor for a list of resources or questions on a topic.")
 
     with col2:
         html = """
@@ -322,7 +322,6 @@ if choose=="Bulk: Summarize or Answer":
 
 if choose=="Feedback":
     st.title("Submit Feedback")
-    st.subheader("We appreciate your feedback!")
     st.write("Share recommended resources, feature requests, or bug reports...")
     jotform = """<script type="text/javascript" src="https://form.jotform.com/jsform/230567840430049"></script>"""
     components.html(jotform, height=1500)
