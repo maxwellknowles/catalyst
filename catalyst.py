@@ -321,6 +321,6 @@ if choose=="Bulk: Summarize or Answer":
 
 if choose=="Feedback":
     st.subheader("We appreciate your feedback!")
-    st.write("Tell us your criticisms, compliments, and ideas...")
-    google_form = """<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe7YUiKFgy2JA_iA70AgMhBvPF2XcsjqRj5su5BwkYP3mxJ8A/viewform?embedded=true" width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>"""
-    components.html(google_form, height=900)
+    st.write("Share recommended resources, feature requests, or bug reports...")
+    jotform = """<script type="text/javascript" src="https://form.jotform.com/jsform/230567840430049"></script>"""
+    components.html(jotform, height=1500)
