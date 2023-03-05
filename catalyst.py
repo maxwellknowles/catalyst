@@ -1,104 +1,15 @@
-import openai
 import streamlit as st
-#from gtts import gTTS
-import base64
 import pandas as pd
 import time
 from streamlit_option_menu import option_menu
 import streamlit.components.v1 as components
-
-#OpenAI API Key
-openai.api_key = st.secrets["openai_key"]
+from app import convert_df, catalyst_ai_question, catalyst_ai_summarize, catalyst_ai_question_for_personal_growth, single_prompt_submitted, bulk_prompt_submitted, resources_repo_viewed, share_page_viewed
 
 #pull in some data
-#state_requirements = pd.read_csv("https://raw.githubusercontent.com/2Maximus7/CGU/main/Homeschool%20Project%20MVP%20-%20State%20High%20School%20Grad%20Requirements.csv")
 free_resources = pd.read_csv("https://raw.githubusercontent.com/maxwellknowles/catalyst/main/Catalyst%20Data%20-%20free%20resources.csv")
+questions = pd.read_csv("https://raw.githubusercontent.com/maxwellknowles/catalyst/main/Catalyst%20Data%20-%20great%20questions.csv")
 
-#FUNCTIONS
-#auto play audio
-def autoplay_audio(file_path: str):
-        with open(file_path, "rb") as f:
-            data = f.read()
-            b64 = base64.b64encode(data).decode()
-            md = f"""
-                <audio controls autoplay="true">
-                <source src="data:audio/mp3;base64,{b64}" type="audio/mp3">
-                </audio>
-                """
-            st.markdown(
-                md,
-                unsafe_allow_html=True,
-            )
-
-#download data as CSV
-@st.cache
-def convert_df(df):
-    # IMPORTANT: Cache the conversion to prevent computation on every rerun
-    return df.to_csv().encode('utf-8')
-
-#OpenAI prompt completion API
-prompts = []
-responses = []
-def catalyst_ai_question(human_response,max_tokens):
-    conversation = openai.Completion.create(
-        model="text-davinci-003",
-        #prompt="The following is a conversation with an AI assistant Catalyst who is helpful, creative, clever, and very friendly. Catalyst AI provides advice on learning and education with simple, clear language. Please think in steps and list resources when appropriate. Catalyst should finish its answer in a separate paragraph with 3 good questions to could ask Catalyst next.\n\nHuman:"+human_response,
-        prompt="The following is a conversation with an AI assistant Catalyst who is helpful, creative, clever, and very friendly. Catalyst AI provides advice on learning and education with simple, clear language. Please think in steps and list resources when appropriate. Here's the question: "+human_response,
-        temperature=0.5,
-        max_tokens=max_tokens,
-        top_p=1,
-        frequency_penalty=0.0,
-        presence_penalty=0.6,
-        #stop=[" Human:", " AI:"]
-        )
-    response = conversation["choices"][0]["text"]
-    #responses.append(response)
-    return response
-
-def catalyst_ai_summarize(human_response,max_tokens):
-    conversation = openai.Completion.create(
-        model="text-davinci-003",
-        #prompt="The following is a conversation with an AI assistant Catalyst who is helpful, creative, clever, and very friendly. Catalyst AI provides advice on learning and education with simple, clear language. Please think in steps and list resources when appropriate. Catalyst should finish its answer in a separate paragraph with 3 good questions to could ask Catalyst next.\n\nHuman:"+human_response,
-        prompt="The following is a conversation with an AI assistant Catalyst who is helpful, creative, clever, and very friendly. Catalyst AI provides advice on learning and education with simple, clear language. Please summarize the following topic or resource: "+human_response,
-        temperature=0.5,
-        max_tokens=max_tokens,
-        top_p=1,
-        frequency_penalty=0.0,
-        presence_penalty=0.6,
-        #stop=[" Human:", " AI:"]
-        )
-    response = conversation["choices"][0]["text"]
-    #responses.append(response)
-    return response
-
-def catalyst_ai_question_for_personal_growth(response):
-    conversation = openai.Completion.create(
-        model="text-davinci-003",
-        prompt="Please provide one question that someone could ask to help them grow as a person based on this response to a question: "+response,
-        temperature=0.5,
-        max_tokens=300,
-        top_p=1,
-        frequency_penalty=0.0,
-        presence_penalty=0.6,
-        stop=[" Human:", " AI:"]
-        )
-    growth_response = conversation["choices"][0]["text"]
-    return growth_response
-
-def catalyst_ai_question_for_related(response):
-    conversation = openai.Completion.create(
-        model="text-davinci-003",
-        prompt="Please provide one question that someone could ask to help them learn about related or competing topics based on this response to a question: "+response,
-        temperature=0.5,
-        max_tokens=300,
-        top_p=1,
-        frequency_penalty=0.0,
-        presence_penalty=0.6,
-        stop=[" Human:", " AI:"]
-        )
-    related_response = conversation["choices"][0]["text"]
-    return related_response
-
+#code for buttons linking off-site
 button_html = '''
 <a href="{}" target="_blank">
     <button style="font-size: 16px; padding: 10px; background-color: #C96985; color: white;">
@@ -107,16 +18,14 @@ button_html = '''
 </a>
 '''
 
-#START PAGE
 #page setup
-st.set_page_config(page_title="Catalyst: Lifelong Learning Everywhere", page_icon=":book:", layout="centered")
+st.set_page_config(page_title="Guided: Lifelong Learning Everywhere", page_icon=":stars:", layout="centered")
 
-#st.image("https://github.com/maxwellknowles/catalyst/blob/main/DALL%C2%B7E%202022-12-29%2014.05%201.png?raw=true",width=200)
-
+#START PAGE
 #menu
 with st.sidebar:
-    choose = option_menu("Catalyst", ["Home","Resources Repo", "Ask AI", "Rapid Learning", "Feedback", "Share"],
-                            icons=['play-circle-fill','journals', 'chat-text-fill', 'table', 'envelope', "share-fill"],
+    choose = option_menu("Guided", ["Home","Resources Repo", "Ask AI", "Rapid Learning", "Feedback", "Share"],
+                            icons=['house-door-fill','collection-fill', 'chat-text-fill', 'table', 'envelope', "share-fill"],
                             menu_icon="app-indicator", default_index=0, orientation="vertical",
                             styles={
         "container": {"padding": "5!important", "background-color": "white"},
@@ -128,36 +37,38 @@ with st.sidebar:
 
 #home
 if choose=="Home":
-    st.title("Catalyst")
-    st.subheader("**Rapid, open learning for everyone, everywhere.**")
+    st.title("Guided")
+    st.subheader("**Free, rapid learning for everyone, everywhere.**")
     html = """
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
         <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_n8y71jlq.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop autoplay></lottie-player>
     """
     components.html(html,height=250)
 
-    st.subheader("Knowledge doesn't belond to an age or zip code.")
+    st.subheader("Knowledge doesn't belong to an age or zip code.")
     st.write("• Today, a person's outcomes are largely determined by where they are born and, by extension, the public education they receive.")
-    st.write("• Learning for professional or personal growth both during and beyond our academic years is crucial but often unguided.")
-    st.write("• People don't choose where they are born or how the world will evolve, but everyone has a right to learn and flourish.")
+    st.write("• Structured learning for professional, civic, and personal growth during our academic years is often weak, and after school, near non-existent.")
+    st.write("• People don't choose where they are born or how the world will evolve, but everyone should be able to flourish throughout their lives.")
 
-    st.subheader("**That's where Catalyst comes in.**")
+    st.subheader("**That's where Guided comes in.**")
     col1, col2 = st.columns(2)
     with col1:
-        st.write("**Catalyst provides...**")
-        st.write("• dozens of **free resources**, including online courses, book repositories, language learning, and code programs")
-        st.write("• powerful **answers** to sets of prompts **en masse** for rapid information download")
-        st.write("• an **AI advisor** that not only answers but recommends **focused, goal-oriented questions** — an AI-infused application of the 2400 year old Socratic method")
-        st.write("**Happy learning!**")
+        st.write("**Guided provides...**")
+        st.write(">**Collected free resources:** A repository of online courses, book repositories, language learning, and code programs")
+        st.write(">**Rapid learning:** Guided can answer or summarize sets of prompts **in bulk** for accelerated information download")
+        st.write(">**An AI advisor:** ChatGPT meets Socrates in this directed prompt/response interface that not only answers but _*facilitates*_ **focused, goal-oriented questions**")
     with col2:
         html = """
        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
         <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_bvleoupy.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
         """
         components.html(html,height=500)
-
+    st.write("If you're a **student**, **young professional**, or simply enjoy **learning new things faster**, then you have found a tool to use and share. If you aren't open to exploring online resources, embracing AI responsibly, or changing the way you think, you should probably close this tab.")
+    st.write("**Happy learning!**")
+    
 #free resources
 if choose=="Resources Repo":
+    resources_repo_viewed()
     st.title("Repository Repo")
     html = """
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
@@ -168,7 +79,7 @@ if choose=="Resources Repo":
     with tab1:
         #free learning resources
         st.subheader("Free Learning Resources")
-        st.write("**Resources for high school, college, career, and personal growth! You can find more resources and even specific course recommendations by chatting with Catalyst AI.**")
+        st.write("**Resources for high school, college, career, and personal growth! You can find more resources and even specific course recommendations by chatting with Guided AI.**")
         categories = free_resources.drop_duplicates("type")
         category = st.selectbox("Select a category!", categories['type'])
         free_resources = free_resources[(free_resources["type"]==category)]
@@ -199,70 +110,93 @@ if choose=="Resources Repo":
         st.write("Dream Mapping in Miro: "+dreammapping)
         st.write("Kiddom for Digital Classrooms: "+kiddom)
 
-#start AI
-#text to speech 
-#myobj = gTTS(text=response, lang="en-uk", slow=False)
-#myobj.save("audio.mp3")
-#autoplay_audio("audio.mp3")
+#submitting one prompt at a time based on goal (similar to Chat-GPT)
 if choose=="Ask AI":
-    st.title("Catalyst AI: An On-Demand Advisor & Tutor")
+    
+    st.title("Guided AI: An On-Demand Advisor & Tutor")
     html = """
        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
         <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_wcjgoacf.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;" autoplay></lottie-player>
         """
     components.html(html,height=250)
-    st.write("Each question may only have one answer, but one answer can inspire many questions. Catalyst focuses on asking good questions to focus your path towards better understanding.")
+
+    st.write("Each question may only have one answer, but one answer can inspire many questions. Guided focuses on asking good questions to focus your path towards better understanding.")
+    
     st.subheader("Submit a prompt")
-    st.write("Feel free to select an example prompt below or write your own :pencil:")
+
+    st.write("**First, establish your goal**")
+
+    st.write("When we ask a question, it's important to know what we're trying to accomplish. Why are you asking Guided a question?")
+
+    col1, col2, col3 = st.columns(3)
+
+    questions_narrowed = questions
+    search_list = []
+    with col1:
+        if st.checkbox("I need help on an assignment"):
+            goal = "I need help on an assignment"
+            questions_narrowed = questions[(questions["goal"]==goal)]
+            search_list = list(questions_narrowed["question"])
+    with col2:
+        if st.checkbox("I want to improve my day-to-day living"):
+            goal = "I want to improve my day-to-day living"
+            questions_narrowed = questions[(questions["goal"]==goal)]
+            search_list = list(questions_narrowed["question"])
+    with col3:
+        if st.checkbox("I want to grow my life direction"):
+            goal = "I want to grow my life direction"
+            questions_narrowed = questions[(questions["goal"]==goal)]
+            search_list = list(questions_narrowed["question"])
+
+    st.write("**Next, choose a question**")
     if 'human_prompt_example' not in st.session_state:
         st.session_state.human_prompt_example = ""
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        if st.button("What are some good alternatives to a 4-year degree?"):
-            st.session_state.human_prompt_example="What are some good alternatives to a 4-year degree?"
-    with col2:
-        if st.button("Can you please walk me through Jungian philosophy?"):
-            st.session_state.human_prompt_example="Can you please walk me through Jungian philosophy?"
-    with col3:
-        if st.button("What are some steps I can take to be a more well informed voter?"):
-            st.session_state.human_prompt_example="What are some steps I can take to be a more well informed voter?"
+    st.session_state.human_prompt_example = st.selectbox(
+        "Select an example question based on your goal or write your own below",
+        search_list)
 
     human_prompt = st.text_area("Ask a question", value=st.session_state.human_prompt_example)
+
+    #prompts and responses
+    prompts = []
+    responses = []
 
     col1, col2 = st.columns([1,2])
     response = ""
     l=[]
     if st.button("Submit"):
-        response = catalyst_ai_question(human_prompt,300)
         with st.spinner('AI is pondering...'):
             time.sleep(3)
+        response = catalyst_ai_question(human_prompt,300)
         tup=(human_prompt,response)
         l.append(tup)
         st.write(response)
+        with st.spinner('Preparing a recommended question...'):
+            time.sleep(2)
         growth_question = catalyst_ai_question_for_personal_growth(response)
         st.write("**Here's a good question you may want to ask now:** "+growth_question)
-        #related_question = catalyst_ai_question_for_related(response)
-        #st.write("Here's a good question you may want to ask to learn about competing or related topics: "+related_question)
+        single_prompt_submitted(human_prompt, response, growth_question)
     conversation = pd.DataFrame(l,columns=["Prompt","Response"])
     
     if len(conversation) > 0:
         
         conversation_csv = convert_df(conversation)
 
-        st.write("**Download your question and response from Catalyst AI...**")
+        st.write("**Download your question and response from Guided AI...**")
         st.download_button(
             label="Download",
             data=conversation_csv,
-            file_name='catalyst.csv',
+            file_name='guided.csv',
             mime='text/csv',
             )
-        
+
+#uploading groups of prompts        
 if choose=="Rapid Learning":  
     st.title("Rapid Learning")  
     col1, col2 = st.columns([1.5,1])
     with col1:
         st.subheader("Summarize or answer prompts in bulk")
-        st.write("Catalyst leverages the latest developments in AI to comb through a list of prompts — math problems, book titles, a set of spiritual disciplines, etc — and provide summaries or answers for each one. This is a tool for rapidly downloading information to help you in your research and learning.\nIf you need help getting started, consider asking Catalyst's AI advisor for a list of resources or questions on a topic.")
+        st.write("Guided leverages the latest developments in AI to comb through a list of prompts — math problems, book titles, a set of spiritual disciplines, etc — and provide summaries or answers for each one. This is a tool for rapidly downloading information to help you in your research and learning.\nIf you need help getting started, consider asking Guided's AI advisor for a list of resources or questions on a topic.")
 
     with col2:
         html = """
@@ -279,12 +213,12 @@ if choose=="Rapid Learning":
     st.download_button(
         label="Download Template",
         data=example_csv,
-        file_name='catalyst_problems_and_answers.csv',
+        file_name='guided_prompts_and_responses.csv',
         mime='text/csv',
         )
     
     st.write("**Step 2**")
-    uploaded_file = st.file_uploader("Choose a CSV file", accept_multiple_files=False)
+    uploaded_file = st.file_uploader("Choose a CSV file (must have one 'prompt' column and one blank 'answer' column)", accept_multiple_files=False)
     if uploaded_file is not None:
         problems = pd.read_csv(uploaded_file)
 
@@ -293,16 +227,19 @@ if choose=="Rapid Learning":
 
     if uploaded_file is not None:
         if st.button("Answer Questions"):
-            with st.spinner('Catalyst AI is working through your problems...'):
+            bulk_prompt_submitted()
+            with st.spinner('Guided AI is working through your problems...'):
                 time.sleep(2)
                 l=[]
                 for i in range(len(problems)):
                     problems["answer"][i] = catalyst_ai_question(problems['prompt'][i],max_tokens)
-                    st.write("Answered question "+str(i+1))
+                    with st.spinner("Answered question "+str(i+1)):
+                        time.sleep(1)
             st.table(problems)
         
         if st.button("Summarize Topics or Resources"):
-            with st.spinner('Catalyst AI is working through your problems...'):
+            bulk_prompt_submitted()
+            with st.spinner('Guided AI is working through your problems...'):
                 time.sleep(2)
                 l=[]
                 for i in range(len(problems)):
@@ -311,37 +248,39 @@ if choose=="Rapid Learning":
             st.table(problems)
 
         problems_and_answers_csv = convert_df(problems)
-        st.write("**Download your prompts and responses from Catalyst AI...**")
+        st.write("**Download your prompts and responses from Guided AI...**")
         st.download_button(
             label="Download",
             data=problems_and_answers_csv,
-            file_name='catalyst_problems_and_answers.csv',
+            file_name='guided_prompts_and_responses.csv',
             mime='text/csv',
             )
-        
 
+#jotform feedback form        
 if choose=="Feedback":
     st.title("Submit Feedback")
     st.write("Share recommended resources, feature requests, or bug reports...")
     jotform = """<script type="text/javascript" src="https://form.jotform.com/jsform/230567840430049"></script>"""
     components.html(jotform, height=1500)
 
+#email, text, and twitter share options
 if choose=="Share":
-    st.title("Share Catalyst")
+    share_page_viewed()
+    st.title("Share Guided")
     #email
-    subject = "Check out Catalyst, a platform for learning"
-    body = "Take a look at Catalyst, an AI-powered project that's democratizing and expediting lifelong learning: https://catalyst-ai.streamlit.app/"
+    subject = "Check out Guided, a platform for learning"
+    body = "Take a look at Guided, an AI-powered project that's democratizing and expediting lifelong learning: https://guided-ai.streamlit.app/"
     st.markdown(f'<a href="mailto:?subject={subject}&body={body}">Share via Email</a>', unsafe_allow_html=True)
 
     #text
-    text_message = "Take a look at Catalyst, an AI-powered project democratizing and expediting lifelong learning: https://catalyst-ai.streamlit.app/"
+    text_message = "Take a look at Guided, an AI-powered project democratizing and expediting lifelong learning: https://guided-ai.streamlit.app/"
     st.markdown(f'<a href="sms:?body={text_message}">Share via Text</a>', unsafe_allow_html=True)
 
     #twitter
     html_twitter = """
         <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" 
-        data-text="Check out Catalyst, an AI-powered project that's democratizing and expediting lifelong learning..."
-        data-url="https://catalyst-ai.streamlit.app/"
+        data-text="Check out Guided, an AI-powered project that's democratizing and expediting lifelong learning..."
+        data-url="https://guided-ai.streamlit.app/"
         data-show-count="false">
         data-size="Large" 
         data-hashtags="streamlit,python"
