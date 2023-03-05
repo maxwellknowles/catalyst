@@ -6,6 +6,9 @@ from openai import OpenAIError
 import streamlit as st
 import base64
 
+#OpenAI API Key
+openai.api_key = st.secrets["openai_key"]
+
 #mixpanel
 mp = Mixpanel(st.secrets["mixpanel"])
 random_uuid = str(uuid.uuid4())
