@@ -27,7 +27,7 @@ button_html = '''
 '''
 
 #page setup
-st.set_page_config(page_title="Guided: Lifelong Learning Everywhere", page_icon=":brain:", layout="wide")
+st.set_page_config(page_title="GuidedAI: Free, rapid learning for everyone, everywhere", page_icon=":brain:", layout="wide")
 
 #START PAGE
 #menu
