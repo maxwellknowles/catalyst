@@ -6,7 +6,7 @@ import streamlit.components.v1 as components
 from app import convert_df, catalyst_ai_question, catalyst_ai_summarize, catalyst_ai_question_for_personal_growth, single_prompt_submitted, bulk_prompt_submitted, resources_repo_viewed, share_page_viewed
 
 #pull in some data
-free_resources = pd.read_csv("https://raw.githubusercontent.com/maxwellknowles/catalyst/main/Catalyst%20Data%20-%20free%20resources.csv")
+free_resources = pd.read_csv("https://raw.githubusercontent.com/maxwellknowles/catalyst/main/data.csv")
 questions = pd.read_csv("https://raw.githubusercontent.com/maxwellknowles/catalyst/main/Catalyst%20Data%20-%20great%20questions.csv")
 
 #code for buttons linking off-site
