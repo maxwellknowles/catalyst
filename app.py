@@ -31,12 +31,18 @@ def autoplay_audio(file_path: str):
             )
 
 #download data as CSV
-@st.cache
+@st.cache_resource
 def convert_df(df):
     # IMPORTANT: Cache the conversion to prevent computation on every rerun
     return df.to_csv().encode('utf-8')
 
+@st.cache_resource
+def get_video():
+    url = "https://github.com/maxwellknowles/catalyst/raw/main/GuidedAI%20Video.mp4"
+    return st.video(url)
+
 #OpenAI prompt completion API
+@st.cache_data
 def catalyst_ai_question(human_response,max_tokens):
     try:
         conversation = openai.Completion.create(
@@ -53,6 +59,7 @@ def catalyst_ai_question(human_response,max_tokens):
         response = st.warning("Oops! Looks like we weren't able to process your request right now.")
     return response
 
+@st.cache_data
 def catalyst_ai_summarize(human_response,max_tokens):
     try:
         conversation = openai.Completion.create(
@@ -69,6 +76,7 @@ def catalyst_ai_summarize(human_response,max_tokens):
         response = st.warning("Oops! Looks like we weren't able to process your request right now.")
     return response
 
+@st.cache_data
 def catalyst_ai_question_for_personal_growth(response):
     try:
         conversation = openai.Completion.create(
@@ -79,7 +87,6 @@ def catalyst_ai_question_for_personal_growth(response):
             top_p=1,
             frequency_penalty=0.0,
             presence_penalty=0.6,
-            stop=[" Human:", " AI:"]
             )
         growth_response = conversation["choices"][0]["text"]
     except OpenAIError as e:
