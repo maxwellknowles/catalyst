@@ -4,5 +4,4 @@ dataFrameSerialization = "legacy"
 [theme]
 base="light"
 primaryColor="#C96985"
-secondaryBackgroundColor="#C96985"
 font="monospace"
