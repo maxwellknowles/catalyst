@@ -1,0 +1,28 @@
+resource,link,description,form
+Open Library,http://openlibrary.org/,"Open Library is an open, editable library catalog, building towards a web page for every book ever published",Books
+Archive,https://archive.org/,"Internet Archive is a non-profit library of millions of free books, movies, software, music, websites, and more.",Books
+LibriVox,https://librivox.org/,"LibriVox audiobooks are free for anyone to listen to, on their computers, iPods or other mobile device, or to burn onto a CD.",Books
+The Online Books Page,https://onlinebooks.library.upenn.edu/,Listing over 3 million free books on the Web,Books
+Google Books,https://books.google.com/,Search the world's most comprehensive index of full-text books.,Books
+Project Gutenberg,https://www.gutenberg.org/,"Project Gutenberg is a library of over 60,000 free eBooks",Books
+Khan Academy,https://www.khanacademy.org/,"Learn for free about math, art, computer programming, economics, physics, chemistry, biology, medicine, finance, history, and more.",Platform
+EdX,https://www.edx.org/,"edX is an American massive open online course provider created by Harvard and MIT. It hosts online university-level courses in a wide range of disciplines to a worldwide student body, including some courses at no charge.",Online Courses
+Coursera,https://www.coursera.org/,Coursera Inc. is a U.S.-based massive open online course provider founded in 2012 by Stanford University computer science professors Andrew Ng and Daphne Koller.,Online Courses
+Alison,https://alison.com/,Free online courses with certificates.,Online Courses
+CourseBuffet,https://www.coursebuffet.com/,"We find and organize free college courses from over 17 platforms and 200+ universities, enabling you to search for them in one spot.",Online Courses
+CodeAcademy,https://www.codecademy.com/,"Codecademy is an American online interactive platform that offers free coding classes in 12 different programming languages including Python, Java, Go, JavaScript, Ruby, SQL, C++, C#, and Swift, as well as markup languages HTML and CSS.",Online Courses
+FreeCodeCamp,https://www.freecodecamp.org/,"freeCodeCamp is a non-profit organization that consists of an interactive learning web platform, an online community forum, chat rooms, online publications and local organizations that intend to make learning web development accessible to anyone.",Online Courses
+University of the People,https://www.uopeople.edu/,University of the people is a tuition-free online university for students from all over the world. Learn more about University at the People!,Online Degree
+Memrise,https://www.memrise.com/,"Memrise is a British language platform that uses spaced repetition of flashcards to increase the rate of learning. It is based in London, UK. Memrise offers user-generated content on a wide range of other subjects.",Platform
+ZenHabits,https://zenhabits.net/,Zen Habits is a blog written by Leo Babauta about implementing zen habits in daily life. It offers suggestions for how to live and also includes frequent references to how Leo Babauta has implemented these habits.,Blog
+Mind Tools,https://www.mindtools.com,"Mind Tools offers more than 2,500 resources to help you develop your personal wellbeing and career skills.",Personal Development
+Babbel,https://www.babbel.com/,Babbel is the new way to learn a foreign language. The comprehensive learning system combines effective education methods with state-of-the-art technology.,Platform
+Drops,https://languagedrops.com/,"Word by word, Drops helps you learn new vocabulary through fun, fast-paced games with simple mnemonic images in just 5 minutes a day.",Platform
+Busuu,https://www.googleadservices.com/,"Busuu is a language learning platform on web, iOS and Android that allows users to interact with native speakers.",Platform
+Duolingo,https://www.duolingo.com/,"Duolingo is an American educational technology company which produces learning apps and provides language certification. On its main gamified language learning app, users can practice vocabulary, grammar, pronunciation and listening skills using spaced repetition.",Platform
+Anki,https://apps.ankiweb.net/,"Anki is a free and open-source flashcard program using spaced repetition, a technique from cognitive science for memorization. The name comes from the Japanese word for ""memorization"".",Platform
+Now I Know,https://nowiknow.com/,Now I Know is a free daily newsletter; you'll learn something new every day.,Newsletter
+Curious,https://curious.com/,"Join Curious.com and get a daily learning workout with daily curios, challenging puzzles, and 25000+ video lessons recommended just for you.",Platform
+BigThink,https://bigthink.com/,Actionable lessons from the world's greatest thinkers and doers.,Platform
+todayilearned,https://todayilearned.app/,"Did you ever wish you could grow faster, without as much pain and failure? Now you can!",Community
+Socratic,https://socratic.org/,"With help from teachers, Socratic brings you visual explanations of important concepts in each subject.",Platform
